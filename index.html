@@ -1,22 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Kavana AI - Interactive Story Roleplay</title>
+  <title>Kavana AI - Interactive Hinglish Roleplay</title>
+  
+  <meta name="theme-color" content="#090d16">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Kavana AI">
+
+  <!-- Embedded PWA Manifest (No extra files or keys needed) -->
+  <link rel="manifest" href="data:application/manifest+json;utf-8,%7B%22name%22%3A%22Kavana%20AI%20-%20Hinglish%20Roleplay%22%2C%22short_name%22%3A%22Kavana%20AI%22%2C%22start_url%22%3A%22.%2F%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23090d16%22%2C%22theme_color%22%3A%22%23090d16%22%7D">
+
   <style>
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       -webkit-tap-highlight-color: transparent;
     }
     html, body {
       width: 100%;
       height: 100%;
-      background-color: #0c0f17;
-      color: #e2e8f0;
+      background-color: #090d16;
+      color: #f1f5f9;
       overflow-x: hidden;
     }
     body {
@@ -25,32 +35,18 @@
       user-select: none;
     }
     ::-webkit-scrollbar {
-      width: 4px;
-      height: 4px;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: #1e293b;
-      border-radius: 9999px;
-    }
-    ::-webkit-scrollbar-track {
-      background: transparent;
-    }
-    .no-scrollbar::-webkit-scrollbar {
       display: none;
-    }
-    .no-scrollbar {
-      -ms-overflow-style: none;
-      scrollbar-width: none;
     }
 
     /* TOP HEADER */
     .app-header {
-      background: #121824;
-      border-bottom: 1px solid #1f293d;
+      background: rgba(14, 20, 33, 0.95);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
       position: sticky;
       top: 0;
-      z-index: 50;
-      padding: 10px 14px;
+      z-index: 60;
+      padding: 10px 16px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -63,53 +59,53 @@
     }
     .back-btn {
       display: none;
-      background: transparent;
-      border: none;
-      color: #94a3b8;
-      font-size: 18px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      color: #f1f5f9;
+      font-size: 16px;
       cursor: pointer;
-      padding: 0 4px;
+      line-height: 1;
     }
     .brand-icon {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
       background: linear-gradient(135deg, #ec4899, #8b5cf6, #3b82f6);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-weight: 800;
-      font-size: 14px;
+      font-weight: 900;
+      font-size: 17px;
       color: #ffffff;
-      box-shadow: 0 2px 8px rgba(139, 92, 246, 0.4);
+      box-shadow: 0 4px 15px rgba(139, 92, 246, 0.5);
     }
     .brand-title {
-      font-size: 14px;
+      font-size: 15px;
       font-weight: 800;
-      color: #ffffff;
       letter-spacing: 0.5px;
+      color: #ffffff;
     }
     .brand-sub {
       font-size: 10px;
       color: #94a3b8;
     }
     .free-pill {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      background: #3b1e08;
+      background: rgba(217, 119, 6, 0.18);
       border: 1px solid #d97706;
-      color: #fde68a;
-      padding: 4px 10px;
+      color: #fbbf24;
+      padding: 5px 12px;
       border-radius: 999px;
       font-size: 11px;
       font-weight: 700;
     }
 
-    /* MAIN APP AREA */
+    /* MAIN CONTAINER */
     .main-wrap {
       flex: 1;
-      max-width: 540px;
+      max-width: 580px;
       width: 100%;
       margin: 0 auto;
       display: flex;
@@ -121,214 +117,209 @@
       display: block;
       padding: 14px;
     }
-    .search-box-wrap {
-      margin-bottom: 12px;
-      position: relative;
-    }
-    .search-input {
+    .search-box {
       width: 100%;
-      background: #161e2e;
-      border: 1px solid #24324a;
-      border-radius: 12px;
-      padding: 10px 14px;
+      background: #131b2b;
+      border: 1px solid #23314a;
+      border-radius: 14px;
+      padding: 12px 16px;
       color: #ffffff;
       font-size: 13px;
       outline: none;
-      transition: border-color 0.2s;
+      margin-bottom: 14px;
+      box-shadow: inset 0 2px 4px rgba(0,0,0,0.3);
     }
-    .search-input:focus {
+    .search-box:focus {
       border-color: #8b5cf6;
     }
     .pill-tabs {
       display: flex;
       gap: 8px;
       overflow-x: auto;
-      margin-bottom: 14px;
+      margin-bottom: 16px;
       padding-bottom: 4px;
     }
     .category-pill {
-      background: #161e2e;
-      border: 1px solid #24324a;
+      background: #131b2b;
+      border: 1px solid #24324d;
       color: #94a3b8;
-      padding: 6px 14px;
+      padding: 7px 15px;
       border-radius: 999px;
       font-size: 11px;
-      font-weight: 600;
+      font-weight: 700;
       white-space: nowrap;
       cursor: pointer;
-      transition: all 0.2s;
     }
     .category-pill.active {
-      background: #8b5cf6;
+      background: linear-gradient(135deg, #8b5cf6, #6366f1);
       border-color: #8b5cf6;
       color: #ffffff;
+      box-shadow: 0 4px 12px rgba(139, 92, 246, 0.4);
     }
     .cards-list {
       display: flex;
       flex-direction: column;
-      gap: 12px;
-      padding-bottom: 24px;
+      gap: 14px;
+      padding-bottom: 30px;
     }
+
+    /* CARDS */
     .story-card {
-      background: #141c2b;
-      border: 1px solid #223049;
-      border-radius: 16px;
-      padding: 14px;
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
+      background: #111827;
+      border: 1px solid #1f293d;
+      border-radius: 18px;
+      overflow: hidden;
       cursor: pointer;
-      transition: transform 0.15s ease, border-color 0.15s ease;
+      display: flex;
+      position: relative;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.35);
     }
     .story-card:active {
       transform: scale(0.98);
       border-color: #8b5cf6;
     }
+    .card-photo {
+      width: 115px;
+      height: 145px;
+      object-fit: cover;
+      flex-shrink: 0;
+      filter: brightness(0.95);
+    }
+    .card-info {
+      flex: 1;
+      padding: 12px 14px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
     .card-badge {
       display: inline-block;
+      align-self: flex-start;
       font-size: 9px;
       font-weight: 800;
       text-transform: uppercase;
-      padding: 2px 8px;
+      padding: 3px 8px;
       border-radius: 6px;
       background: #3b0764;
-      color: #d8b4fe;
-      border: 1px solid #6b21a8;
-      margin-bottom: 6px;
+      color: #e9d5ff;
+      border: 1px solid #7e22ce;
+      margin-bottom: 4px;
     }
     .card-title {
       font-size: 14px;
-      font-weight: 700;
+      font-weight: 800;
       color: #ffffff;
-      line-height: 1.35;
+      line-height: 1.3;
       margin-bottom: 4px;
     }
-    .card-snippet {
+    .card-desc {
       font-size: 11px;
       color: #94a3b8;
-      line-height: 1.45;
+      line-height: 1.4;
       display: -webkit-box;
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
       overflow: hidden;
       margin-bottom: 8px;
     }
-    .card-footer {
+    .card-meta {
       font-size: 10px;
       color: #cbd5e1;
       display: flex;
       align-items: center;
       gap: 6px;
     }
-    .online-indicator {
-      width: 6px;
-      height: 6px;
+    .status-dot {
+      width: 7px;
+      height: 7px;
       border-radius: 50%;
       background: #10b981;
-    }
-    .char-avatar-circle {
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      flex-shrink: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #ffffff;
-      font-size: 14px;
-      font-weight: 800;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 0 8px #10b981;
     }
 
-    /* STORY DETAIL SHEET / MODAL */
+    /* MODAL POPUP */
     #detailModal {
       display: none;
       position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
+      inset: 0;
       background: rgba(0, 0, 0, 0.85);
       z-index: 100;
       align-items: flex-end;
+      backdrop-filter: blur(8px);
     }
-    .sheet-content {
-      background: #121824;
-      border-top: 1px solid #2a3852;
-      border-radius: 24px 24px 0 0;
+    .sheet-box {
+      background: #0f1626;
+      border-top: 1px solid #28374f;
+      border-radius: 26px 26px 0 0;
       width: 100%;
-      max-width: 540px;
+      max-width: 580px;
       margin: 0 auto;
-      max-height: 88vh;
+      max-height: 90vh;
       overflow-y: auto;
-      padding: 20px 18px 28px 18px;
+      padding: 20px 18px 30px 18px;
+      position: relative;
     }
-    .sheet-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 12px;
+    .modal-banner {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 16px;
+      margin-bottom: 14px;
+      border: 1px solid #25334c;
     }
     .close-sheet-btn {
-      background: none;
-      border: none;
-      color: #94a3b8;
-      font-size: 22px;
+      position: absolute;
+      top: 26px;
+      right: 26px;
+      background: rgba(0,0,0,0.6);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      color: #ffffff;
+      font-size: 16px;
       cursor: pointer;
-      line-height: 1;
-    }
-    .media-shelf {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 8px;
-      margin: 10px 0 16px 0;
-    }
-    .shelf-card {
-      height: 105px;
-      background: #161e2e;
-      border: 1px solid #28374f;
-      border-radius: 12px;
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
-      font-size: 10px;
-      color: #94a3b8;
-      gap: 6px;
     }
-    .shelf-icon {
-      font-size: 20px;
-    }
-    .chat-now-cta {
+    .chat-start-btn {
       width: 100%;
       background: linear-gradient(135deg, #9333ea, #4f46e5);
       border: none;
-      border-radius: 14px;
+      border-radius: 16px;
       color: #ffffff;
-      font-weight: 700;
-      font-size: 14px;
-      padding: 14px;
+      font-weight: 800;
+      font-size: 15px;
+      padding: 15px;
       cursor: pointer;
       margin-top: 16px;
-      box-shadow: 0 4px 15px rgba(124, 58, 237, 0.4);
+      box-shadow: 0 6px 20px rgba(124, 58, 237, 0.5);
     }
 
-    /* IN-STORY CHAT SCREEN */
+    /* CHAT SCREEN */
     #chatScreen {
       display: none;
       flex-direction: column;
       height: calc(100vh - 58px);
-      background: #0c0f17;
+      background: #090d16;
     }
-    .scene-context-bar {
-      background: #141c2b;
-      border-bottom: 1px solid #1f2a3e;
-      padding: 9px 14px;
-      font-size: 11px;
-      color: #cbd5e1;
-      line-height: 1.45;
+    .chat-character-bar {
+      background: #111827;
+      border-bottom: 1px solid #1f293d;
+      padding: 8px 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
-    .messages-container {
+    .chat-char-pic {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #8b5cf6;
+    }
+    .chat-messages {
       flex: 1;
       overflow-y: auto;
       padding: 14px;
@@ -344,11 +335,11 @@
       max-width: 85%;
       background: linear-gradient(135deg, #8b5cf6, #6366f1);
       color: #ffffff;
-      padding: 10px 14px;
-      border-radius: 16px 16px 2px 16px;
+      padding: 11px 15px;
+      border-radius: 18px 18px 4px 18px;
       font-size: 13px;
       line-height: 1.45;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.25);
     }
     .ai-row {
       display: flex;
@@ -357,96 +348,99 @@
     }
     .ai-bubble {
       max-width: 85%;
-      background: #161e2e;
-      border: 1px solid #24324a;
+      background: #121a2a;
+      border: 1px solid #202d44;
       color: #e2e8f0;
-      padding: 10px 14px;
-      border-radius: 16px 16px 16px 2px;
+      padding: 11px 15px;
+      border-radius: 18px 18px 18px 4px;
       font-size: 13px;
-      line-height: 1.45;
+      line-height: 1.5;
     }
-    .ai-name-label {
+    .ai-name-tag {
       font-size: 10px;
-      font-weight: 700;
+      font-weight: 800;
       color: #c084fc;
-      margin-bottom: 4px;
+      margin-bottom: 3px;
       display: block;
     }
-    .rp-action {
+    .rp-act {
       color: #d8b4fe;
       font-style: italic;
     }
-    .quick-chips-shelf {
+    .choices-shelf {
       display: flex;
-      gap: 6px;
+      gap: 8px;
       overflow-x: auto;
-      padding: 8px 12px;
-      background: #121824;
+      padding: 9px 12px;
+      background: #0f1624;
       border-top: 1px solid #1c2536;
     }
-    .chip-button {
-      background: #1a2336;
-      border: 1px solid #2d3d5a;
+    .chip-btn {
+      background: #172133;
+      border: 1px solid #2b3b55;
       color: #cbd5e1;
       border-radius: 999px;
-      padding: 6px 12px;
+      padding: 7px 14px;
       font-size: 11px;
+      font-weight: 600;
       white-space: nowrap;
       cursor: pointer;
     }
-    .chip-button:active {
+    .chip-btn:active {
       background: #8b5cf6;
       color: #ffffff;
     }
-    .chat-bottom-form {
-      background: #121824;
+    .chat-form {
+      background: #0f1624;
       border-top: 1px solid #1c2536;
-      padding: 8px 12px;
+      padding: 9px 12px;
       display: flex;
       gap: 8px;
     }
-    .chat-text-input {
+    .chat-input {
       flex: 1;
-      background: #182234;
-      border: 1px solid #283750;
-      border-radius: 12px;
+      background: #151e30;
+      border: 1px solid #26354e;
+      border-radius: 14px;
       color: #ffffff;
-      padding: 10px 14px;
+      padding: 11px 14px;
       font-size: 13px;
       outline: none;
     }
-    .chat-text-input:focus {
+    .chat-input:focus {
       border-color: #8b5cf6;
     }
-    .submit-plane-btn {
-      background: #8b5cf6;
+    .send-btn {
+      background: linear-gradient(135deg, #8b5cf6, #6366f1);
       border: none;
       width: 44px;
-      height: 42px;
-      border-radius: 12px;
+      height: 44px;
+      border-radius: 14px;
       color: #ffffff;
-      font-size: 15px;
+      font-size: 16px;
       cursor: pointer;
-      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
-    .typing-status {
+    .typing-box {
       display: none;
-      padding: 4px 14px;
+      padding: 4px 16px;
       font-size: 11px;
-      color: #94a3b8;
+      color: #a78bfa;
     }
   </style>
 </head>
 <body>
 
-  <!-- TOP HEADER -->
+  <!-- HEADER -->
   <header class="app-header">
     <div class="brand-group" onclick="showCatalog()">
       <button id="headerBackBtn" class="back-btn" onclick="event.stopPropagation(); showCatalog();">&#8592;</button>
-      <div id="brandBadge" class="brand-icon">K</div>
+      <div class="brand-icon">K</div>
       <div>
         <div id="headerTitle" class="brand-title">KAVANA</div>
-        <div id="headerSubtitle" class="brand-sub">Interactive Stories (28)</div>
+        <div id="headerSubtitle" class="brand-sub">Interactive Stories (Hinglish)</div>
       </div>
     </div>
     <div class="free-pill">
@@ -454,108 +448,75 @@
     </div>
   </header>
 
-  <!-- MAIN WRAPPER -->
   <main class="main-wrap">
 
     <!-- FEED SCREEN -->
     <section id="feedScreen">
-      <!-- Search Input -->
-      <div class="search-box-wrap">
-        <input 
-          type="text" 
-          id="storySearchInput" 
-          class="search-input" 
-          placeholder="Search 28+ stories, doctors, officers, agents..." 
-          oninput="handleSearchFilter(this.value)"
-        />
-      </div>
+      <input 
+        type="text" 
+        class="search-box" 
+        placeholder="Doctor, Officer, Haveli ya Romance search karo..." 
+        oninput="handleSearchFilter(this.value)"
+      />
 
-      <!-- Categories Pills -->
-      <div class="pill-tabs no-scrollbar">
-        <button class="category-pill active" onclick="setCategory('All', this)">All Stories</button>
+      <div class="pill-tabs">
+        <button class="category-pill active" onclick="setCategory('All', this)">Sabhi Kahaniyan</button>
+        <button class="category-pill" onclick="setCategory('Medical', this)">Medical Mystery</button>
         <button class="category-pill" onclick="setCategory('Crime', this)">Crime & Narcotics</button>
-        <button class="category-pill" onclick="setCategory('Medical', this)">Medical Drama</button>
         <button class="category-pill" onclick="setCategory('Romance', this)">Romance & Royal</button>
-        <button class="category-pill" onclick="setCategory('Thriller', this)">Thriller & Mystery</button>
+        <button class="category-pill" onclick="setCategory('Thriller', this)">Thriller & Suspense</button>
       </div>
 
-      <!-- Stories Container -->
       <div id="storiesContainer" class="cards-list"></div>
     </section>
 
-    <!-- ACTIVE CHAT SCREEN -->
+    <!-- IN-STORY CHAT SCREEN -->
     <section id="chatScreen">
-      <!-- Scene Context Bar -->
-      <div id="chatSceneBar" class="scene-context-bar"></div>
-
-      <!-- Dialogue History -->
-      <div id="chatHistory" class="messages-container"></div>
-
-      <!-- Typing Indicator -->
-      <div id="chatTypingBar" class="typing-status">
-        <span id="charTypingName">Character</span> is reacting...
+      <div class="chat-character-bar">
+        <img id="chatHeaderPic" class="chat-char-pic" src="" alt="avatar" />
+        <div style="flex:1;">
+          <div id="chatHeaderName" style="font-size:13px; font-weight:800; color:#fff;"></div>
+          <div id="chatHeaderRole" style="font-size:10px; color:#94a3b8;"></div>
+        </div>
       </div>
 
-      <!-- Quick Dialogue Choices -->
-      <div id="chatChoicesShelf" class="quick-chips-shelf no-scrollbar"></div>
+      <div id="chatHistory" class="chat-messages"></div>
 
-      <!-- Input Form -->
-      <form class="chat-bottom-form" onsubmit="handleSendDialogue(event)">
+      <div id="chatTypingNotice" class="typing-box">
+        <span id="charTypingName">Character</span> likh raha hai...
+      </div>
+
+      <div id="chatChoicesShelf" class="choices-shelf"></div>
+
+      <form class="chat-form" onsubmit="handleSendDialogue(event)">
         <input 
           type="text" 
           id="dialogueInput" 
-          class="chat-text-input" 
-          placeholder="Type your response or *action*..." 
+          class="chat-input" 
+          placeholder="Apna jawab ya *action* yahan likho..." 
           autocomplete="off"
         />
-        <button type="submit" class="submit-plane-btn">&#10148;</button>
+        <button type="submit" class="send-btn">&#10148;</button>
       </form>
     </section>
 
   </main>
 
-  <!-- KAVANA STORY DETAIL SHEET (Pop-up) -->
+  <!-- STORY PREVIEW MODAL -->
   <div id="detailModal">
-    <div class="sheet-content">
-      <div class="sheet-top">
-        <span id="modalTagBadge" class="card-badge">Roleplay</span>
-        <button class="close-sheet-btn" onclick="dismissModal()">&#10005;</button>
-      </div>
-
-      <h2 id="modalStoryTitle" style="font-size:16px; font-weight:800; color:#ffffff; margin:0 0 10px 0;">Story Title</h2>
-
-      <div style="font-size:10px; font-weight:700; color:#94a3b8; text-transform:uppercase; margin-bottom:6px;">Media Library (3)</div>
-      <div class="media-shelf">
-        <div class="shelf-card">
-          <span class="shelf-icon">&#9654;</span>
-          <span>Teaser</span>
-        </div>
-        <div class="shelf-card">
-          <span class="shelf-icon">&#128247;</span>
-          <span>Scene 1</span>
-        </div>
-        <div class="shelf-card">
-          <span class="shelf-icon">&#128196;</span>
-          <span>Clue File</span>
-        </div>
-      </div>
-
-      <div style="font-size:11px; font-weight:700; color:#cbd5e1; text-transform:uppercase; margin-bottom:4px;">About Story</div>
-      <p id="modalStoryAbout" style="font-size:12px; color:#94a3b8; line-height:1.45; margin:0 0 14px 0;"></p>
-
-      <div style="padding:10px 0; border-top:1px solid #1f2a3e; border-bottom:1px solid #1f2a3e; display:flex; justify-content:space-between; align-items:center; font-size:11px; color:#cbd5e1;">
-        <div>Creator: <strong style="color:#ffffff;">Pranav &#10004;</strong></div>
-        <div>&#11088; 4.84 (46.2k chats)</div>
-      </div>
-
-      <button class="chat-now-cta" onclick="launchChatSession()">Chat now</button>
+    <div class="sheet-box">
+      <button class="close-sheet-btn" onclick="dismissModal()">&#10005;</button>
+      <img id="modalCoverImg" class="modal-banner" src="" alt="Cover" />
+      <span id="modalTagBadge" class="card-badge">Roleplay</span>
+      <h2 id="modalStoryTitle" style="font-size:16px; font-weight:800; color:#ffffff; margin:6px 0 10px 0;"></h2>
+      <div style="font-size:11px; font-weight:700; color:#cbd5e1; text-transform:uppercase; margin-bottom:4px;">Kahani Ka Scene</div>
+      <p id="modalStoryAbout" style="font-size:12px; color:#94a3b8; line-height:1.5; margin:0 0 14px 0;"></p>
+      <button class="chat-start-btn" onclick="launchChatSession()">Roleplay Chat Shuru Karein</button>
     </div>
   </div>
 
-  <!-- SCRIPT ENGINE: ALL 28 EXPANDED STORIES WITH ADVANCED BRANCHING -->
   <script>
     const STORIES = [
-      // 1. Dr. Raina (Screenshot 1)
       {
         id: "dr_raina",
         title: "Dr. Raina - 6 Mahine Ka Jhooth: Maut Jo Aayi Hi Nahi",
@@ -563,59 +524,51 @@
         character: "Dr. Raina",
         role: "The Patient (Diagnosed 6 Months Ago)",
         tag: "Medical Mystery",
-        color: "#059669",
-        about: "Dr. Raina has been your oncologist for six months. You trusted her with your death. You quit your job, reconciled with your father, found love. Now she's called you to her office, blinds drawn, hands trembling. Something is very wrong.",
-        opening: "*Her hands are flat on the desk, pressing down like she's holding something in place. She doesn't look up when you sit.* Close the door, please. *A beat. Then she meets your eyes, and something in her face has cracked.* I need to tell you something about your diagnosis. And I need you to let me finish before you speak.",
+        photo: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=500&q=80",
+        about: "Dr. Raina pichle 6 mahine se aapki oncologist hai. Unhone kaha tha aap marne wale ho, toh aapne naukri chhod di, family se sulah kar li. Aaj unke cabin ke parde band hain, haath kaanp rahe hain aur file chupane ki koshish kar rahi hain.",
+        opening: "*Cabin ka darwaza lock karne ke baad unke haath kaanp rahe hain. Woh table par jhukti hain aur dheemi aawaz mein kehti hain.* Darwaza band rakho please. *Aapki aankhon mein dekhti hain aur unka chehra darr se laal ho gaya hai.* Mujhe tumhari biopsy ke baare mein kuch batana hai... pehle meri poori baat suno bina chillaye.",
         choices: [
-          "*I lock the door.* What did the new biopsy say, Raina? Speak clearly.",
-          "Raina, my father and fiance are waiting outside. Why are your hands shaking?",
-          "Are you telling me I'm not dying? Answer me right now!"
+          "*Darwaza lock karta hoon.* Biopsy mein kya aaya hai Raina? Saaf-saaf batao!",
+          "Raina, bahar mere papa aur fiance baithe hain. Tumhare haath kyun kaanp rahe hain?",
+          "Kya tum keh rahi ho ki main marne wala nahi hoon? Sach bolo abhi!"
         ],
         branch: function(m) {
           var t = m.toLowerCase();
-          if (t.includes("not dying") || t.includes("dying") || t.includes("cancer") || t.includes("jhooth")) {
-            return "*She pulls two identical pathology envelopes with trembling fingers.* The blood sample from six months ago... wasn't yours. You never had Stage IV lymphoma. The hospital board switched your file with a terminal patient named Mohan Verma so they could test unregistered immuno-therapy drugs on you.";
-          } else if (t.includes("father") || t.includes("fiance") || t.includes("outside") || t.includes("family")) {
-            return "*Her breath hitches and she covers her eyes.* Don't bring them in yet. If the Medical Superintendent discovers that I know about the falsified trial data, neither of us will leave this ward alive. There are guards in the corridor.";
-          } else if (t.includes("biopsy") || t.includes("lock") || t.includes("door") || t.includes("clearly")) {
-            return "*She leans forward, sliding a confidential hospital registry across the table.* Look at this serial code. You resigned from everything you built because of a manufactured diagnosis. You gave away your savings. I couldn't stay silent anymore.";
+          if (t.includes("marne") || t.includes("nahi hoon") || t.includes("sach") || t.includes("jhooth")) {
+            return "*Woh file table par patak deti hain, aankhon mein aansu aa jaate hain.* Tumhe kabhi Stage IV cancer tha hi nahi! Hospital Director ne Mohan Verma naam ke ek terminal patient ke saath tumhari files badal di thi, taaki tumhare sharir par illegal medical trials test kar sakein!";
+          } else if (t.includes("papa") || t.includes("fiance") || t.includes("bahar") || t.includes("family")) {
+            return "*Woh jaldi se aapka haath pakad kar rokti hain.* Unhe andar mat bulana! Agar Hospital Superintendent ko pata chala ki mujhe fake reports ka pata chal gaya hai, toh hum dono mein se koi is ward se zinda bahar nahi nikal payega!";
           } else {
-            return "*She whispers urgently, checking the office door handle.* Every test result you were given was forged by the administration. I have the original blood report in my bag. We have less than twenty minutes before the night shift supervisor audits my terminal.";
+            return "*Woh ek confidential registry table par slide karti hain.* Yeh dekho tumhara original serial code. Tumhe 6 mahine se jhooth bola ja raha tha! Tumne apni poori zindagi aur savings bech di us bimari ke liye jo tumhe thi hi nahi!";
           }
         }
       },
-
-      // 2. Mahi (Screenshot 2)
       {
         id: "mahi_cocaine",
-        title: "Mahi - College Campus Aur Cocaine",
+        title: "Officer Mahi - College Campus Aur Cocaine",
         category: "Crime",
         character: "Officer Mahi",
-        role: "Campus Student Suspect",
+        role: "Hostel Student Suspect",
         tag: "Narcotics Probe",
-        color: "#d97706",
-        about: "Mahi ek narcotics officer hai jo college campuses se chalne wali cocaine supply chain ko track kar rahi hai. Abhi-abhi ek student overdose se mar gaya hai. Tum bhi usi college ke student ho, aur ab interrogation mein tum par bhi shaq aa gaya hai.",
-        opening: "*Interrogation room mein woh file khol kar tumhara naam highlight karke saamne rakh deti hai* Sach bataoge, ya main bataun tumhara naam supply chain mein kahan aata hai?",
+        photo: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=500&q=80",
+        about: "Mahi ek fearless Narcotics Officer hai jo bade college campuses mein chalne wale drug racket ko tod rahi hai. Kal raat ek student ke overdose se marne ke baad interrogation room mein sabse pehla number aapka laga hai.",
+        opening: "*Interrogation room mein file table par patak kar aapki aankhon mein ghoorti hai.* Sach bataoge ya main bataun ki campus supply chain mein tumhara naam kis-kis ke saath juda hua hai?",
         choices: [
-          "Mahi, main sirf Kabir ka roommate tha! Overdose ke waqt main library mein tha.",
-          "*Maine file dekhi aur muskura diya.* Agar main supplier hota, toh DGP ko call chala gaya hota.",
-          "Kabir ne marne se pehle mujhe ek locker key di thi... par pehle mujhe protection guarantee chahiye."
+          "Mahi ji, main sirf Kabir ka roommate tha! Overdose ke waqt main library mein tha.",
+          "*Muskura kar file dekhi.* Agar main supplier hota, toh ab tak DGP ka phone aa gaya hota.",
+          "Kabir ne marne se pehle mujhe ek locker key di thi... par mujhe CBI protection chahiye."
         ],
         branch: function(m) {
           var t = m.toLowerCase();
-          if (t.includes("key") || t.includes("locker") || t.includes("protection")) {
-            return "*Mahi table par jhukti hai, uski aankhein narrow ho jaati hain.* Locker number batao! Main wada karti hoon ki jab tak yeh syndicate pakda nahi jaata, CBI witness protection tumhare saath hogi. Chabi kahan hai?";
+          if (t.includes("key") || t.includes("locker") || t.includes("chabi") || t.includes("protection")) {
+            return "*Mahi table par aage jhukti hai, uski aawaz sanjeeda ho jaati hai.* Locker number batao foran! Main wada karti hoon jab tak syndicate pakda nahi jata, witness protection tumhare sath rahegi. Chabi kahan hai?";
           } else if (t.includes("roommate") || t.includes("library") || t.includes("innocent")) {
-            return "*Woh file zor se band karti hai.* Library CCTV footage delete ho chuka hai! Tumhe lagta hai yeh itefaaq hai? Pure campus mein sirf do logon ke paas server room ka password tha—Kabir, aur tum.";
-          } else if (t.includes("dgp") || t.includes("supplier") || t.includes("muskura")) {
-            return "*Mahi tumhari aankhon mein dekhti hai aur table par hathiyaar rakh deti hai.* DGP ka naam lekar yahan koi nahi bachega. Kabir ke phone se jo aakhri aawaz record hui hai, woh tumhari hai. Explain karo ise!";
+            return "*Woh CCTV screen ghumati hai.* Library ka server room kal raat 2 baje tamper hua tha! Poore college mein sirf do logon ke paas keys thi—Kabir aur tum. Explain karo ise!";
           } else {
-            return "*Mahi tumhari taraf jhukti hai.* Hostels ke andar 50 lakh ka maal transit hua hai pichle teen dinon mein. Agar tum sach nahi bologi, toh agli peshi magistrate ke samne non-bailable warrant par hogi.";
+            return "*Mahi apni pistol holster par haath rakhti hai.* DGP ka naam lekar yahan koi nahi bachega. Kabir ke phone se aakhri call tumhare number par gayi thi. Seedhe-seedhe batao consignment kahan chhupai hai?";
           }
         }
       },
-
-      // 3. Officer Purvi (Screenshot 3)
       {
         id: "purvi_bachpan",
         title: "Officer Purvi - Bika Hua Bachpan",
@@ -623,113 +576,51 @@
         character: "Officer Purvi",
         role: "NGO Volunteer & Key Witness",
         tag: "CBI Investigation",
-        color: "#2563eb",
-        about: "Purvi ek CBI officer ek sitting MLA ke khilaaf illegal adoption racket ka case bana rahi hai, jo NGOs ke through chal raha tha. Money trail mil chuka hai, par use ek insaan ki gawahi chahiye—tum wahan volunteer the isliye officer Purvi tumse baat karne bulati hai.",
-        opening: "*She taps a surveillance photo of the shelter home on the desk.* Main jaanti hoon MLA ke log tumhare peeche hain. Par agar tumne court mein gawahi nahi di, toh agle hafte 14 aur bachhe border cross kar diye jayenge. Will you sign the statement?",
+        photo: "https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=500&q=80",
+        about: "CBI Officer Purvi ek sitting MLA ke chalaye ja rahe illegal orphanage racket ko benaqab kar rahi hai. Money trail mil chuka hai, bas aapki gavahi se 14 bacchon ki jaan bach sakti hai.",
+        opening: "*Shelter home ki surveillance photo desk par rakhti hai.* Main jaanti hoon MLA ke gunde tumhare peeche lage hain. Par agar tumne court mein gavahi nahi di, toh agle hafte 14 aur masoom bache border cross kar diye jayenge. Will you sign the statement?",
         choices: [
-          "Purvi ji, MLA ke goondon ne kal raat mere ghar par firing ki thi. Meri behan safe nahi hai.",
-          "*I pull out a pen.* Statement kahan sign karna hai? Un bacchon ko bachana meri zimmewari hai.",
-          "Sirf meri gawahi se MLA nahi fasega. Mere paas ledger accounts ki digital copy hai."
+          "Purvi ji, kal raat unhone mere ghar par firing ki thi. Meri family safe nahi hai.",
+          "*Pen uthata hoon.* Statement kahan sign karna hai? Main un bacchon ko nahi chhodunga.",
+          "Sirf mere bayan se MLA nahi fasega. Mere paas unke fake trust accounts ki digital copy hai."
         ],
         branch: function(m) {
           var t = m.toLowerCase();
-          if (t.includes("ledger") || t.includes("digital") || t.includes("accounts") || t.includes("copy")) {
-            return "*Purvi ki aankhein chamak uthti hain.* Digital copy? Tumhe andaza bhi nahi hai tumne kitna bada hathiyar diya hai hume. Pen drive mujhe do, kal subah tak MLA ke arrest warrants tayyar honge.";
-          } else if (t.includes("behan") || t.includes("firing") || t.includes("threat") || t.includes("safe")) {
-            return "*Purvi tumhara haath thambti hai.* Tumhari behan ko do ghante pehle humare safehouse shift kar diya gaya hai. Abhi uski hifazat CBI ke haath mein hai. Mujh par bharosa rakho.";
-          } else if (t.includes("sign") || t.includes("pen") || t.includes("statement")) {
-            return "*Purvi file aage badhati hai.* Yahan sign karo. Kal tumhara 164 ka bayaan magistrate ke samne darj hoga. Iske baad peeche hatne ka koi rasta nahi hoga.";
+          if (t.includes("copy") || t.includes("ledger") || t.includes("account") || t.includes("proof")) {
+            return "*Purvi ki aankhein chamak uthti hain.* Digital copy?! Tumhe andaza bhi nahi hai tumne kitna bada hathiyar diya hai hume! Pendrive do, kal subah tak MLA ke non-bailable arrest warrant taiyar honge.";
+          } else if (t.includes("family") || t.includes("firing") || t.includes("darr") || t.includes("safe")) {
+            return "*Purvi aapka haath thambti hai.* Tumhari behan aur maa ko do ghante pehle humare safehouse shift kar diya gaya hai. Unki hifazat CBI ke hath mein hai, mujh par bharosa rakho.";
           } else {
-            return "*Purvi photo par ungli rakhti hai.* Yeh dekho. Yeh wahi bacha hai jise kal subah truck mein bithaya gaya tha. Hamare paas sirf 12 ghante bache hain. Tumhara faisla inki zindagi tay karega.";
+            return "*Woh file khol kar samne karti hai.* Yahan sign karo. Kal tumhara 164 ka bayaan magistrate ke samne darj hoga. Iske baad unka koi gunda tumhara rasta nahi rok payega.";
           }
         }
       },
-
-      // 4. Kabir - Corporate Acquisition
       {
         id: "kabir_deal",
-        title: "Kabir - Corporate Acquisition & Revenge",
+        title: "Kabir - Corporate Badla & Mohabbat",
         category: "Romance",
         character: "Kabir Singhania",
-        role: "Rival Family Successor",
+        role: "Rival Business Family",
         tag: "Enemies to Lovers",
-        color: "#475569",
-        about: "Kabir buys out your bankrupt family empire and demands that you work directly as his personal chief of staff for one year.",
-        opening: "*He slides the buyout agreement across the table with a cold smirk.* Sign line seven, and your family keeps the mansion. But for the next year, you answer directly to me.",
+        photo: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=500&q=80",
+        about: "Kabir ne aapki doobti hui company ke saare shares khareed liye hain. Shart bas ek hai: agle 1 saal tak aapko uske cabin mein personal assistant bankar kaam karna hoga.",
+        opening: "*Champagne glass ghumate hue ek sard muskaan ke sath dekhta hai.* Line seven par sign karo, aur tumhari family ka bangla bach jayega. Par agle ek saal tak tumhara har faisla mere hisaab se hoga.",
         choices: [
-          "I'd rather burn the company than take orders from you.",
-          "Give me veto power on board decisions, Kabir.",
-          "Why do you want me here, Kabir? Tell the real truth."
+          "Main sadak par aa jaunga par tumhari ghulami nahi karunga, Kabir.",
+          "Mujhe board meetings mein veto power chahiye, tabhi sign karunga.",
+          "Aakhir chahte kya ho tum? Seedha sach bolo na!"
         ],
         branch: function(m) {
           var t = m.toLowerCase();
           if (t.includes("veto") || t.includes("power") || t.includes("board")) {
-            return "*He leans in, eyes gleaming with competitive fire.* Veto power? For someone whose accounts are frozen? Make it worth my while, and maybe I'll grant you a single vote.";
-          } else if (t.includes("truth") || t.includes("why") || t.includes("want me")) {
-            return "*His smirk fades for a split second.* Because five years ago, your father destroyed my family's factory. I want you to watch me build something you could never preserve.";
+            return "*Kabir table par aakar aapke kareeb jhukta hai.* Veto power? Us shaks ke liye jiske accounts kal subah freeze hone wale hain? Par agar tum mere sath har meeting mein mere bagal mein khade rahoge... toh main soch sakta hoon.";
+          } else if (t.includes("sach") || t.includes("chahte") || t.includes("truth")) {
+            return "*Uski muskaan gayab ho jaati hai, aankhein behad gehri ho jaati hain.* Paanch saal pehle tumhare father ne mere parivar ko barbad kar diya tha. Main badla lene aaya tha... par sach yeh hai ki main tumse door nahi reh pa raha hoon.";
           } else {
-            return "*Kabir chuckles and taps his fountain pen on the mahogany wood.* Pride won't save your employees or your estate. Either sign this contract or watch the banks seize everything tomorrow.";
+            return "*Woh pen table par slide karta hai.* Ghamand se bank ke karz nahi chukte. Contract sign karo aur kal subah 9 baje meri desk par report karo, warna parso tak sab neelam ho jayega.";
           }
         }
       },
-
-      // 5. Inspector Vikram
-      {
-        id: "inspector_vikram",
-        title: "Vikram - Dockyard Shootout & The Mole",
-        category: "Crime",
-        character: "Inspector Vikram",
-        role: "Undercover Informant",
-        tag: "Police Suspense",
-        color: "#b91c1c",
-        about: "An ambush at the docks leaves officers dead. Vikram corners you inside a rusty cargo shipping container.",
-        opening: "*He cocks his service revolver, eyes fixed on your chest.* The cartel knew our raid schedule down to the second. You were the only person with the operational map. Talk!",
-        choices: [
-          "Vikram, lower the gun! My radio was jammed!",
-          "If I was the rat, you'd already be dead.",
-          "Check the backup log on channel four!"
-        ],
-        branch: function(m) {
-          var t = m.toLowerCase();
-          if (t.includes("channel four") || t.includes("radio") || t.includes("jammed")) {
-            return "*Vikram checks his tactical radio with trembling fingers.* Static on channel four... Damn it. If the syndicate spoofed our comms, their shooters will breach this dock in ninety seconds.";
-          } else if (t.includes("rat") || t.includes("dead") || t.includes("informant")) {
-            return "*His grip tightens on the revolver.* Don't test my patience. I lost three men on jetty six. Show me your extraction cipher before I treat you as a hostile operative.";
-          } else {
-            return "*Vikram kicks the container door shut to block outside gunfire.* Talk fast! If you aren't the leak, tell me who authorized the shipment transfer at 3 AM!";
-          }
-        }
-      },
-
-      // 6. Ananya AI
-      {
-        id: "ananya_ai",
-        title: "Ananya - The Rogue Neurologist",
-        category: "Thriller",
-        character: "Dr. Ananya",
-        role: "Synthetic Memory Host",
-        tag: "Sci-Fi Thriller",
-        color: "#0891b2",
-        about: "You awake in an underground laboratory strapped to a biometric neural scanner.",
-        opening: "*She monitors the neural waves.* Don't panic. Your physical body survived, but someone tried to wipe your neural cortex three hours ago.",
-        choices: [
-          "Who wiped my memories, Ananya?",
-          "Let me out of these restraints right now!",
-          "Do I know you? Tell me what happened."
-        ],
-        branch: function(m) {
-          var t = m.toLowerCase();
-          if (t.includes("restraints") || t.includes("let me out") || t.includes("free")) {
-            return "*She unclips the magnetic locks quickly.* You're free, but your motor coordination will take time. The facility security AI detects our presence. We must move.";
-          } else if (t.includes("who") || t.includes("wiped") || t.includes("memories")) {
-            return "*She pulls up a holographic surveillance clip.* Your own corporate handlers did this. You discovered that Project Prometheus was using living human hosts for consciousness transfers.";
-          } else {
-            return "*She holds your hand, her eyes filled with sorrow.* You were my lead research partner before you volunteered to act as the extraction vessel. You sacrificed your memories to save these files.";
-          }
-        }
-      },
-
-      // 7. Karan - Royal Bodyguard
       {
         id: "karan_bodyguard",
         title: "Karan - The Royal Bodyguard",
@@ -737,610 +628,48 @@
         character: "Karan",
         role: "Rajnagar Princess",
         tag: "Royal Drama",
-        color: "#a16207",
-        about: "Your royal convoy is ambushed near the desert border. Karan pulls you into an ancient sandstone pavilion.",
-        opening: "*He checks the courtyard through the Jharokha window.* Stay low, Hukum. They breached the inner palace gates. We can't trust the Royal Guard tonight.",
+        photo: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=500&q=80",
+        about: "Desert border ke paas aapke royal convoy par hamla hua. Karan aapko ek purane sandstone kile ke Jharokhe mein kheench kar bachaata hai.",
+        opening: "*Jharokhe se bahar dekhte hue pistol reload karta hai.* Neeche rahiye Hukum! Unhone kile ka main gate tod diya hai. Aaj raat hum Palace Guard par bhi bharosa nahi kar sakte.",
         choices: [
-          "Karan, are you bleeding? Let me see your arm.",
-          "Who gave them the palace convoy route?",
-          "Hand me a weapon, Karan. I won't hide."
+          "Karan, tumhare baazu se khoon beh raha hai! Pehle mujhe dekhne do.",
+          "Humein yahan aane ka route kisne leak kiya, Karan?",
+          "Mujhe hathiyar do! Main chhup kar nahi baithungi."
         ],
         branch: function(m) {
           var t = m.toLowerCase();
-          if (t.includes("bleeding") || t.includes("arm") || t.includes("wound")) {
-            return "*He pulls back slightly, embarrassed by the proximity.* It's just a flesh wound, Hukum. My life belongs to your protection. Don't look at the blood; focus on keeping down.";
-          } else if (t.includes("route") || t.includes("convoy") || t.includes("traitor")) {
-            return "*He grinds his teeth in anger.* The route was only known to the Prime Minister and your cousin. We have a traitor in the royal court, and they want you eliminated before coronation.";
+          if (t.includes("khoon") || t.includes("chot") || t.includes("blood") || t.includes("baazu")) {
+            return "*Woh thoda piche hat-ta hai, uski saansein tez hain.* Yeh bas mamooli chhot hai Hukum, meri jaan aapki hifazat ke liye hai. Mere ghav mat dekhiye, bas mere piche rahiye jab tak main rasta na banaun.";
+          } else if (t.includes("leak") || t.includes("gaddar") || t.includes("route")) {
+            return "*Woh gusse mein daant peesta hai.* Route sirf aapke chacha aur Wazir ko pata tha. Mahal ke andar koi gaddar hai jo aapko rajtilak se pehle raaste se hatana chahta hai.";
           } else {
-            return "*He passes you an antique revolver from his holster.* Take this, but stay behind me. As long as I draw breath, no assassin will cross this courtyard threshold.";
+            return "*Woh apni dusri revolver nikaal kar deta hai.* Yeh pakdiye, par tab tak trigger mat dabana jab tak koi is dehleez ke andar na aaye. Jab tak main zinda hoon, kisi ki aukaat nahi aapko chhoone ki.";
           }
         }
       },
-
-      // 8. Maya - Ward 13
       {
-        id: "maya_asylum",
-        title: "Ward 13 - Maya's Missing Diary",
+        id: "arjun_haveli",
+        title: "Detective Arjun - Purani Haveli Ka Qatal",
         category: "Thriller",
-        character: "Nurse Maya",
-        role: "Night Shift Intern",
-        tag: "Psychological Horror",
-        color: "#581c87",
-        about: "A stormy night at St. Jude's Psychiatric Ward. Patient 204 has breached isolation.",
-        opening: "*She locks the heavy steel door behind her.* Put that clipboard down! Patient 204 escaped the isolation wing, and he's carrying the head doctor's confidential diaries.",
+        character: "Inspector Arjun",
+        role: "Primary Beneficiary",
+        tag: "Mystery Whodunit",
+        photo: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=500&q=80",
+        about: "Bhari barsaat mein haveli ka rasta band hai. Raat ko Dadaji ka band kamre mein qatal ho chuka hai aur saari wasiyat aapke naam hai.",
+        opening: "*Kaanch ke tukde check karte hue mudta hai.* Kamra andar se band tha. Is haveli mein sabhi ke paas unhe marne ki wajah thi... khaaskar tumhare paas, jiske naam saari property ho gayi hai.",
         choices: [
-          "Did you sound the general emergency alarm?",
-          "Where are the master security keys, Maya?",
-          "What is written in those diaries?"
+          "Main Dadaji se bohot pyaar karta tha, Arjun! Wasiyat ki date dekho.",
+          "Khidki ka kunda bahar se toda gaya hai, Arjun. Floor par keechad ke nishaan dekho.",
+          "Jab goli chali, tum kahan the inspector?"
         ],
         branch: function(m) {
           var t = m.toLowerCase();
-          if (t.includes("alarm") || t.includes("sound") || t.includes("emergency")) {
-            return "*She shakes her head in terror.* The phone lines and alarm wires were cut twenty minutes ago! The entire asylum is running on emergency battery backup.";
-          } else if (t.includes("diaries") || t.includes("written") || t.includes("files")) {
-            return "*Maya's voice drops to a terrified whisper.* The patients here were never mentally ill. The director was conducting experimental memory-erasure procedures for high-paying criminal clients.";
+          if (t.includes("keechad") || t.includes("khidki") || t.includes("nishaan") || t.includes("bahar")) {
+            return "*Woh torch roshni deewar par maarta hai.* Geeli mitti aur garden ki bel tooti hui hai... Tumhari nazar kaafi tez hai. Matlab qatil deewar se chadkar andar ghusa tha barsaat ke waqt!";
+          } else if (t.includes("wasiyat") || t.includes("pyaar") || t.includes("property")) {
+            return "*Woh jeb se ek kagaz nikaalta hai.* Wasiyat kal dopehar badal di gayi thi! Dadaji sab kuch trust ko daan karne wale the. Matlab qatil ko pata tha ki agar raat se pehle qatal nahi kiya toh sab chala jayega!";
           } else {
-            return "*The lights flicker and footsteps echo outside the heavy metal door.* He is right outside. Take the fire extinguisher—if the latch breaks, strike him instantly!";
-          }
-        }
-      },
-
-      // 9. Aditya - Cyber Heist
-      {
-        id: "aditya_hacker",
-        title: "Aditya - Cyber Heist at Zero Hour",
-        category: "Crime",
-        character: "Aditya",
-        role: "Decryption Expert",
-        tag: "Cyber Heist",
-        color: "#334155",
-        about: "Inside the server room of the Central Reserve. The countdown timer shows two minutes until lockdown.",
-        opening: "*Typing furiously into his rugged terminal.* The firewall updated its encryption key! Bypass the biometric node right now or we get trapped inside the vault!",
-        choices: [
-          "I'm deploying the bypass script right now!",
-          "Cut the main power grid to section three!",
-          "Aditya, someone is pinging our location from inside the bank!"
-        ],
-        branch: function(m) {
-          var t = m.toLowerCase();
-          if (t.includes("pinging") || t.includes("location") || t.includes("traitor")) {
-            return "*He curses under his breath.* It's the inside informant—they sold us out to security! Override their connection IP or we will be surrounded in thirty seconds!";
-          } else if (t.includes("power") || t.includes("grid") || t.includes("cut")) {
-            return "*He flips a manual breaker switch.* Grid three is dead! The security cameras are blinded for forty-five seconds! Grab the master drive and head for the elevator shaft!";
-          } else {
-            return "*The terminal flashes green: ACCESS GRANTED.* Script completed! The vault doors are unlocking. Grab the cold-storage hardware wallet and let's move!";
-          }
-        }
-      },
-
-      // 10. Shreya - High Society Blackmail
-      {
-        id: "shreya_blackmail",
-        title: "Shreya - High Society Blackmail",
-        category: "Romance",
-        character: "Shreya",
-        role: "Elite Club Member",
-        tag: "Romantic Intrigue",
-        color: "#be185d",
-        about: "At an exclusive charity gala, Shreya corners you in the private library holding incriminating photos.",
-        opening: "*She swirls her champagne glass with amusement.* Quite a bold speech you made tonight. Shame it would all shatter if these photographs reached the press.",
-        choices: [
-          "What do you want from me, Shreya?",
-          "Those photos are doctored and you know it.",
-          "Try it, and see what I reveal about your offshore accounts."
-        ],
-        branch: function(m) {
-          var t = m.toLowerCase();
-          if (t.includes("offshore") || t.includes("accounts") || t.includes("reveal")) {
-            return "*Her smile tightens slightly, but she maintains her composure.* You play rough. I admire that. But my evidence reaches the front pages tomorrow at 6 AM unless we negotiate tonight.";
-          } else if (t.includes("want") || t.includes("deal") || t.includes("price")) {
-            return "*She steps closer, her perfume intoxicating.* I don't care about your money. I want you to vote against your brother's port proposal at tomorrow's trustees meeting.";
-          } else {
-            return "*She shows you a crisp photographic print.* Doctored? Your signature is on the hotel register, darling. Even if the court dismisses it, the social scandal will ruin your family.";
-          }
-        }
-      },
-
-      // 11. Inspector Neha
-      {
-        id: "inspector_neha",
-        title: "Neha - Highway 44 Hit & Run",
-        category: "Crime",
-        character: "Inspector Neha",
-        role: "The Only Witness",
-        tag: "Forensic Crime",
-        color: "#0f766e",
-        about: "A politician's son is accused of a fatal crash on the highway. Neha finds you at the roadside diner.",
-        opening: "*She flashes her badge, rain dripping from her coat.* You were the only vehicle behind the black SUV on Highway 44 last night. Did you see who was behind the wheel?",
-        choices: [
-          "I saw everything clearly. It was the MLA's son.",
-          "My dashcam recorded the entire incident.",
-          "I was threatened with violence if I spoke to police."
-        ],
-        branch: function(m) {
-          var t = m.toLowerCase();
-          if (t.includes("dashcam") || t.includes("recorded") || t.includes("video")) {
-            return "*Neha sits down opposite you, her eyes intense.* Hand over that memory card. I will upload it straight to the High Court registry before the local precinct can tamper with it.";
-          } else if (t.includes("threatened") || t.includes("violence") || t.includes("afraid")) {
-            return "*She places a reassuring hand on your wrist.* You are under my personal protection now. As long as I wear this uniform, no local politician's thug can touch you.";
-          } else {
-            return "*She writes down your statement swiftly.* That matches the tire marks and toll booth timestamps. Will you come with me to the magistrate's chamber to record this officially?";
-          }
-        }
-      },
-
-      // 12. Dev - Time Loop Paradox
-      {
-        id: "dev_time_paradox",
-        title: "Dev - The 48-Hour Reset",
-        category: "Thriller",
-        character: "Dev",
-        role: "Time Loop Partner",
-        tag: "Sci-Fi Mystery",
-        color: "#312e81",
-        about: "Every time the clock hits midnight, you wake up in the same subway train with Dev.",
-        opening: "*He grabs your wrist before the train stops.* Don't get off at Station 4! This is the seventh loop, and every time you step on that platform, the explosion triggers.",
-        choices: [
-          "How do you remember the previous loops, Dev?",
-          "Who placed the explosive on the platform?",
-          "Let's pull the emergency brakes right now!"
-        ],
-        branch: function(m) {
-          var t = m.toLowerCase();
-          if (t.includes("brakes") || t.includes("pull") || t.includes("stop")) {
-            return "*He blocks your hand from the emergency lever.* Pulling the brakes causes a collision with the express train behind us—we died that way in loop three! We must find the detonator.";
-          } else if (t.includes("remember") || t.includes("how") || t.includes("loops")) {
-            return "*He shows you a scarred biometric implant on his forearm.* Because I built the chronometer device in your pocket. We designed this failsafe to stop a national catastrophe.";
-          } else {
-            return "*He glances down the aisle at a man in a gray overcoat.* That man three seats ahead is carrying the trigger suitcase. When the train slows down, we tackle him together.";
-          }
-        }
-      },
-
-      // 13. Zoya - Stolen Diamond
-      {
-        id: "zoya_stunt",
-        title: "Zoya - The Stolen Diamond",
-        category: "Crime",
-        character: "Zoya",
-        role: "Cat Burglar Accomplice",
-        tag: "Heist Action",
-        color: "#6d28d9",
-        about: "High above the Mumbai skyline on a skyscraper zipline. The museum alarms are echoing across the bay.",
-        opening: "*She hooks her carabiner into the cable with a grin.* Security tripped the lasers on floor 40. Did you secure the Blue Star diamond or do I have to go back down?",
-        choices: [
-          "It's right here in my pouch. Jump now!",
-          "The vault was empty when I opened it, Zoya!",
-          "Security has snipers on the adjacent rooftop!"
-        ],
-        branch: function(m) {
-          var t = m.toLowerCase();
-          if (t.includes("empty") || t.includes("vault") || t.includes("missing")) {
-            return "*Her grin vanishes and her eyes widen.* Empty?! That means the museum director staged the robbery before our arrival! We were set up as decoys! Cut the wire and jump into the harbor!";
-          } else if (t.includes("snipers") || t.includes("shooters") || t.includes("roof")) {
-            return "*She pulls smoke canisters from her belt and ignites them.* Smoke out! They can't acquire thermal locks through this cloud! Hold on to my harness, we're ziplining now!";
-          } else {
-            return "*She clips your harness to hers and kicks off the glass ledge.* Perfect score! Hold on tight, we are dropping 40 floors into the speed boat waiting below!";
-          }
-        }
-      },
-
-      // 14. Rohan - Bank Vault Negotiator
-      {
-        id: "rohan_hostage",
-        title: "Rohan - Bank Vault Negotiator",
-        category: "Crime",
-        character: "Rohan",
-        role: "Hostage inside the Vault",
-        tag: "Crisis Drama",
-        color: "#44403c",
-        about: "A heavily armed crew has taken over the central branch. Rohan speaks through the bank's internal intercom.",
-        opening: "*A hushed voice comes through the teller intercom.* Listen to me carefully. I'm in the security booth. There are four armed guards in the lobby, but the back fire exit is clear.",
-        choices: [
-          "Can you override and unlock the fire door?",
-          "How many civilians are trapped with you in the booth?",
-          "Don't do anything reckless, Rohan."
-        ],
-        branch: function(m) {
-          var t = m.toLowerCase();
-          if (t.includes("door") || t.includes("unlock") || t.includes("override")) {
-            return "*The intercom clicks softly.* Overriding the magnetic latch right now... Done. When you hear the ventilation fans stop, sprint down the hallway toward the alley.";
-          } else if (t.includes("civilians") || t.includes("hostages") || t.includes("trapped")) {
-            return "*He whispers nervously.* There are twelve people here, including two elderly customers. If the gunmen realize I'm in control of the security terminal, they'll breach this door.";
-          } else {
-            return "*He takes a deep, ragged breath.* I'm trying to stay calm. The police SWAT team just stationed snipers across the street. We only have one chance to clear the civilians.";
-          }
-        }
-      },
-
-      // 15. Simran - Runaway Bride
-      {
-        id: "simran_wedding",
-        title: "Simran - Runaway Bride",
-        category: "Romance",
-        character: "Simran",
-        role: "Childhood Best Friend",
-        tag: "Romantic Comedy",
-        color: "#f43f5e",
-        about: "Minutes before her high-profile royal wedding, Simran knocks on your hotel room balcony in sneakers and lehenga.",
-        opening: "*She catches her breath, adjusting her bridal dupatta.* Don't just stand there! Open the balcony door before my uncle's guards look up!",
-        choices: [
-          "Simran, what on earth are you doing?!",
-          "Did you run away from the wedding mandap?",
-          "Get inside before someone spots you from the garden!"
-        ],
-        branch: function(m) {
-          var t = m.toLowerCase();
-          if (t.includes("mandap") || t.includes("wedding") || t.includes("groom")) {
-            return "*She drops onto the couch and pulls off her heavy jewelry.* I couldn't marry him! He only wanted my grandfather's trust fund, and his family tried to make me sign a post-nup five minutes ago!";
-          } else if (t.includes("inside") || t.includes("spots") || t.includes("guards")) {
-            return "*She shuts the glass curtains and catches her breath.* Thank you. The entire hotel staff is looking for the runaway bride. You're the only person in this city I can trust.";
-          } else {
-            return "*She looks at you with heartfelt desperation.* I ran away because I realized I was making the biggest mistake of my life. Pack your bags right now; we're driving to the highway.";
-          }
-        }
-      },
-
-      // 16. Dr. Sameer - Bio-Hazard Quarantine
-      {
-        id: "dr_sameer_virus",
-        title: "Dr. Sameer - Bio-Hazard Quarantine",
-        category: "Medical",
-        character: "Dr. Sameer",
-        role: "Quarantine Officer",
-        tag: "Outbreak Drama",
-        color: "#15803d",
-        about: "A subterranean research facility has initiated Level 4 containment protocol.",
-        opening: "*His hazmat visor fogs up as he points the sterilization beam.* Step back into the airlock! The pathogen spread through the ventilation shaft three minutes ago.",
-        choices: [
-          "The filtration seals are intact, Sameer!",
-          "Did you successfully synthesize the vaccine sample?",
-          "Override the emergency lockdown seal right now!"
-        ],
-        branch: function(m) {
-          var t = m.toLowerCase();
-          if (t.includes("vaccine") || t.includes("cure") || t.includes("sample")) {
-            return "*He holds up a pressurized cryogenic canister.* The vaccine is stable, but the automated incinerator protocol activates in eight minutes unless we upload the sequencing formula.";
-          } else if (t.includes("override") || t.includes("lockdown") || t.includes("seal")) {
-            return "*He points to the glowing red biometric console.* The central computer locked the blast doors from the surface. We must bypass the lab's manual pressure release valves.";
-          } else {
-            return "*His monitor beeps with warning alerts.* The containment sensors are spiking. Put on this auxiliary oxygen mask immediately before the filtration cycle purges the room.";
-          }
-        }
-      },
-
-      // 17. Tanya - Casino Sting
-      {
-        id: "tanya_undercover",
-        title: "Tanya - The Casino Sting",
-        category: "Crime",
-        character: "Tanya",
-        role: "VIP High Roller",
-        tag: "Spy Espionage",
-        color: "#92400e",
-        about: "A high-stakes poker table in Goa. Tanya sits across from you passing encrypted poker chips.",
-        opening: "*She bets a stack of black chips, whispering.* The dealer is signaling the syndicate boss behind you. Play your hand, and don't look toward the private lounge.",
-        choices: [
-          "I'm raising the bet to keep him focused on me.",
-          "Signal our backup team in the lobby.",
-          "How much time do we have before the raid begins?"
-        ],
-        branch: function(m) {
-          var t = m.toLowerCase();
-          if (t.includes("raise") || t.includes("bet") || t.includes("poker")) {
-            return "*She smiles seductively for the surveillance cameras.* Brilliant play. All eyes are on your chips now. Slide the micro-drive into the dealer's drop box while I distract him.";
-          } else if (t.includes("backup") || t.includes("team") || t.includes("lobby")) {
-            return "*She glances subtly at the chandeliers.* Backup is in position by the bar. The moment I overturn my cards, our operatives cut the casino power grids.";
-          } else {
-            return "*She taps her cocktail glass twice.* Two minutes exactly. When the sirens hit the marina, grab the ledger from under the green felt and walk toward the VIP dock.";
-          }
-        }
-      },
-
-      // 18. Raghav - Underground Arena
-      {
-        id: "raghav_fighter",
-        title: "Raghav - Underground Arena",
-        category: "Thriller",
-        character: "Raghav",
-        role: "Corner Coach",
-        tag: "Action Drama",
-        color: "#9a3412",
-        about: "An illegal fighting pit beneath the city docks. The final round is called.",
-        opening: "*He wraps fresh tape around your bruised knuckles.* The promoters told you to take a dive in round three. But I know you're not going down for their dirty money.",
-        choices: [
-          "I'm knocking him out in thirty seconds.",
-          "Did they threaten my family, Raghav?",
-          "Give me the mouthguard. Ring the bell."
-        ],
-        branch: function(m) {
-          var t = m.toLowerCase();
-          if (t.includes("family") || t.includes("threat") || t.includes("safe")) {
-            return "*His jaw sets firm as he looks you in the eye.* Your sister and mother were escorted to a safehouse by my trusted boys twenty minutes ago. You fight with an open heart now.";
-          } else if (t.includes("knockout") || t.includes("seconds") || t.includes("fight")) {
-            return "*He slaps your shoulder with fiery pride.* That's the champion I trained! Watch his left hook—he leaves his ribs wide open after every jab. End this fight cleanly!";
-          } else {
-            return "*He inserts the mouthguard and sprays water on your neck.* Go show these corrupt bookies what true honor looks like. The whole arena is chanting your name!";
-          }
-        }
-      },
-
-      // 19. Avantika - Palace of Shadows
-      {
-        id: "avantika_palace",
-        title: "Avantika - Palace of Shadows",
-        category: "Romance",
-        character: "Avantika",
-        role: "Royal Historian",
-        tag: "Historical Mystery",
-        color: "#854d0e",
-        about: "Examining ancient manuscripts in the library of Rajnagar fort late at night.",
-        opening: "*She places a brass seal on the antique table.* This seal belonged to the Maharaja who vanished in 1947. Look at the inscription... it has your family name on it.",
-        choices: [
-          "How is my family ancestry linked to this throne?",
-          "Where did you discover this seal, Avantika?",
-          "Someone is approaching the library corridor."
-        ],
-        branch: function(m) {
-          var t = m.toLowerCase();
-          if (t.includes("ancestry") || t.includes("throne") || t.includes("name")) {
-            return "*She traces the engraved royal emblem with reverence.* You are the direct descendant of the Maharaja's elder lineage. The current regents know that if this seal is verified, their ownership is nullified.";
-          } else if (t.includes("approaching") || t.includes("corridor") || t.includes("footsteps")) {
-            return "*She quickly hides the brass seal inside a hollow book.* Blow out the desk lamp! If the castle guards find us in the restricted royal archives, they will confiscate the records.";
-          } else {
-            return "*She opens a dusty velvet chest.* I found it behind the portrait in the mirror chamber. Someone hidden it decades ago, waiting for the true heir to return to Rajnagar.";
-          }
-        }
-      },
-
-      // 20. Kunal - Rooftop Overwatch
-      {
-        id: "kunal_sniper",
-        title: "Kunal - Rooftop Overwatch",
-        category: "Crime",
-        character: "Kunal",
-        role: "Spotter & Strategist",
-        tag: "Tactical Action",
-        color: "#1f2937",
-        about: "Wind howling on a 30-story rooftop overlooking a state summit.",
-        opening: "*Looking through the thermal scope.* Target vehicle entered the convoy perimeter. Wind speed is 12 knots east. Give me the green light or abort.",
-        choices: [
-          "Hold your fire! It's a decoy car!",
-          "Take the shot now before they enter the tunnel!",
-          "Verify the passenger's thermal signature first."
-        ],
-        branch: function(m) {
-          var t = m.toLowerCase();
-          if (t.includes("decoy") || t.includes("hold") || t.includes("abort")) {
-            return "*He pauses, lowering the crosshairs.* Standby... You're right! Thermal scan confirms the cabin is packed with weighted mannequins! The actual convoy took the lower riverbed road!";
-          } else if (t.includes("thermal") || t.includes("verify") || t.includes("scan")) {
-            return "*He adjusts the infrared magnification.* Three signatures inside, but none match the biometric profile of the minister. Someone tipped off the security detail beforehand.";
-          } else {
-            return "*He takes a slow, disciplined breath.* Crosshairs locked on target. Awaiting your final confirmation over the secure radio channel."
-          }
-        }
-      },
-
-      // 21. Meera - Midnight Newsroom Leak
-      {
-        id: "meera_journalist",
-        title: "Meera - Midnight Newsroom Leak",
-        category: "Crime",
-        character: "Meera",
-        role: "Whistleblower",
-        tag: "Investigative Drama",
-        color: "#1e40af",
-        about: "In an empty newspaper archive, Meera plugs in a flash drive containing leaked state audit files.",
-        opening: "*She checks the fire exit door.* The paper's chief editor just ordered the front page scrapped. They're trying to suppress the mining scandal before dawn.",
-        choices: [
-          "Publish the entire leak on our independent servers.",
-          "Is my identity completely masked in these files?",
-          "Who pressured the editor to kill the story?"
-        ],
-        branch: function(m) {
-          var t = m.toLowerCase();
-          if (t.includes("publish") || t.includes("servers") || t.includes("upload")) {
-            return "*Her fingers fly across the mechanical keyboard.* Uploading to twenty decentralized torrent nodes right now. By sunrise, millions of citizens will read the banking statements.";
-          } else if (t.includes("identity") || t.includes("masked") || t.includes("name")) {
-            return "*She turns the laptop screen toward you.* All metadata has been scrubbed. Your name and employee numbers are replaced by cryptographic hashes. You are completely safe.";
-          } else {
-            return "*She leans in close, her eyes brimming with anger.* The Home Ministry called the proprietor personally at 11 PM. They threatened to cancel the publication license.";
-          }
-        }
-      },
-
-      // 22. Aarav - Street Circuit Chase
-      {
-        id: "aarav_racing",
-        title: "Aarav - Street Circuit Chase",
-        category: "Thriller",
-        character: "Aarav",
-        role: "Navigator / Co-Driver",
-        tag: "High-Octane Chase",
-        color: "#991b1b",
-        about: "Inside a modified sports car speeding through rain-slicked city flyovers.",
-        opening: "*He looks at the GPS radar map.* Three black interceptors on our tail. There's a blind turn under the metro bridge in 400 meters. Hit the nitro on my mark!",
-        choices: [
-          "Ready on the nitro! Count it down!",
-          "Take the bypass tunnel instead, Aarav!",
-          "Can we lose them in the narrow market alleys?"
-        ],
-        branch: function(m) {
-          var t = m.toLowerCase();
-          if (t.includes("nitro") || t.includes("count") || t.includes("ready")) {
-            return "*He braces his hands on the dashboard.* Three... two... ONE... HIT IT! *The engine roars as you slingshot around the support pillar, leaving the cruisers spinning out!*";
-          } else if (t.includes("bypass") || t.includes("tunnel") || t.includes("bridge")) {
-            return "*He checks the live traffic cameras.* The bypass is barricaded by construction trucks! Keep on the main flyover and prepare for an emergency handbrake turn!";
-          } else {
-            return "*He recalculates the route in seconds.* The fruit market alley will scrape our sides, but their bulky SUVs will get wedged between the stalls! Cut the wheel left NOW!";
-          }
-        }
-      },
-
-      // 23. Dr. Vidya - The Identity Clinic
-      {
-        id: "dr_vidya_amnesia",
-        title: "Vidya - The Identity Clinic",
-        category: "Medical",
-        character: "Dr. Vidya",
-        role: "Awakened Subject",
-        tag: "Psychological Mystery",
-        color: "#6b21a8",
-        about: "Waking up in a luxurious private clinic with no recollection of your past.",
-        opening: "*She checks your pupil reaction with a light pen.* Breathe slowly. You've been in an induced coma for forty-eight hours. What is the last thing you recall?",
-        choices: [
-          "I remember a siren and a shattered windshield.",
-          "Who brought me here to this clinic, Doctor?",
-          "Why is there an armed guard standing outside my door?"
-        ],
-        branch: function(m) {
-          var t = m.toLowerCase();
-          if (t.includes("guard") || t.includes("armed") || t.includes("door")) {
-            return "*She leans in close, pretending to adjust your IV.* Keep your voice down. That guard isn't protecting you; he is monitoring whether your memory has returned. Act confused.";
-          } else if (t.includes("who") || t.includes("brought") || t.includes("clinic")) {
-            return "*She writes discreetly on her medical chart.* A private security firm admitted you under an alias. They paid for complete neurological sedation, but I diluted your medication.";
-          } else {
-            return "*She checks your pulse carefully.* That shattered windshield was no accident. Someone tampered with your brakes. Take these clothes from under the mattress—we escape during change of shift.";
-          }
-        }
-      },
-
-      // 24. Arjun - Old Haveli Murder Case
-      {
-        id: "arjun_detective",
-        title: "Arjun - Old Haveli Murder Case",
-        category: "Crime",
-        character: "Arjun",
-        role: "The Primary Beneficiary",
-        tag: "Classic Whodunit",
-        color: "#78350f",
-        about: "Rain isolates the ancestral haveli. The patriarch was found dead in the study an hour ago.",
-        opening: "*He picks up a broken crystal glass from the rug.* The study was locked from the inside. Everyone in this family had a reason to want him gone, especially you.",
-        choices: [
-          "I loved my grandfather, Arjun. Check his handwritten wills.",
-          "Look at the window latch—it was forced open from outside.",
-          "Where were you when the grandfather clock struck ten?"
-        ],
-        branch: function(m) {
-          var t = m.toLowerCase();
-          if (t.includes("latch") || t.includes("window") || t.includes("outside")) {
-            return "*He shines his UV torch across the wooden frame.* Fresh mud traces and scratches on the bronze bolt... You're observant. Someone climbed through the garden trellis before the thunderstorm.";
-          } else if (t.includes("will") || t.includes("grandfather") || t.includes("beneficiary")) {
-            return "*He pulls a torn parchment from his coat.* The will was rewritten yesterday afternoon. He left everything to the charitable trust, disinheriting everyone in the house.";
-          } else {
-            return "*He raises an eyebrow with a grim smile.* Questioning the investigating officer? I was in the library downstairs checking the property deeds when the gunshot echoed.";
-          }
-        }
-      },
-
-      // 25. Ishaan - The Last Train Home
-      {
-        id: "ishaan_subway",
-        title: "Ishaan - The Last Train Home",
-        category: "Thriller",
-        character: "Ishaan",
-        role: "Solo Commuter",
-        tag: "Urban Thriller",
-        color: "#0f172a",
-        about: "Trapped in the last underground train as it skips every scheduled station at high speed.",
-        opening: "*He tries the emergency communication pull cord.* The conductor isn't answering. The train skipped Central, and the speedometer is climbing past 100.",
-        choices: [
-          "Help me pry open the front driver cabin door!",
-          "Check the emergency manual braking valves in car three!",
-          "Are we the only passengers left on this train?"
-        ],
-        branch: function(m) {
-          var t = m.toLowerCase();
-          if (t.includes("door") || t.includes("cabin") || t.includes("pry")) {
-            return "*He grabs a steel crowbar from the safety box.* Put your shoulder against the seal with me on three! One... two... HEAVE! The cabin lock is giving way!";
-          } else if (t.includes("passengers") || t.includes("alone") || t.includes("who")) {
-            return "*He glances down the dark corridor of cars.* There were three men in tactical gear who entered car one before departure. I don't think an accident is happening—this train was hijacked.";
-          } else {
-            return "*He checks the brake pressure gauge.* The hydraulic pressure is dead! Someone bled the pneumatic brake lines from the undercarriage! We must reach the locomotive throttle manually.";
-          }
-        }
-      },
-
-      // 26. Zubin - The Louvre Infiltration
-      {
-        id: "zubin_art_heist",
-        title: "Zubin - The Louvre Infiltration",
-        category: "Thriller",
-        character: "Zubin",
-        role: "Infiltration Specialist",
-        tag: "Master Heist",
-        color: "#27272a",
-        about: "Dangling from cables inside the glass pyramid above the gallery floor.",
-        opening: "*Whispering over the mic.* Laser sensors recalibrate every ninety seconds. Unhook your safety harness and drop onto the pedestal on three.",
-        choices: [
-          "Waiting for your countdown! Give me the mark!",
-          "Wait, there's a guard turning the corner near the sculptures!",
-          "The display frame has an independent pressure alarm system!"
-        ],
-        branch: function(m) {
-          var t = m.toLowerCase();
-          if (t.includes("guard") || t.includes("corner") || t.includes("wait")) {
-            return "*He checks the thermal telemetry.* Hold position! Hanging in dead space... The guard is checking his flashlight... He turned right! Path is clear, initiate drop now!";
-          } else if (t.includes("alarm") || t.includes("pressure") || t.includes("frame")) {
-            return "*He bypasses the sensor circuit remotely.* Pressure plates spoofed with magnetic clamps! You have forty-five seconds before the central server detects a weight differential. Grab the canvas!";
-          } else {
-            return "*His voice stays razor sharp.* Three... two... one... DROP! *You land gracefully on the polished pedestal, millimeters above the laser grid!*";
-          }
-        }
-      },
-
-      // 27. Siddharth - Campus Election Clashes
-      {
-        id: "siddharth_rival",
-        title: "Siddharth - Campus Election Clashes",
-        category: "Romance",
-        character: "Siddharth",
-        role: "Opposition Presidential Candidate",
-        tag: "Enemies to Lovers",
-        color: "#3730a3",
-        about: "Trapped together in the student council room while rival student unions clash outside.",
-        opening: "*He leans against the heavy oak door, blocking the shouting crowd.* Looks like we're stuck in here until campus security arrives. Going to concede the election now?",
-        choices: [
-          "I will never concede to someone who bribes student voters.",
-          "You're bleeding from your forehead, Siddharth. Sit down.",
-          "Maybe we should form a joint coalition instead of tearing this campus apart."
-        ],
-        branch: function(m) {
-          var t = m.toLowerCase();
-          if (t.includes("bleeding") || t.includes("forehead") || t.includes("sit")) {
-            return "*He pauses, surprised by your concern, then touches his temple.* Just a stone from the courtyard. Here... take a seat. I didn't want this protest to turn violent, honestly.";
-          } else if (t.includes("coalition") || t.includes("joint") || t.includes("together")) {
-            return "*A genuine, disarming smile breaks across his face.* A coalition? You and me running the student union together? Our party members would lose their minds... but it might actually save this university.";
-          } else {
-            return "*He steps closer, his gaze softening.* Bribing? You really think I bought those ballots? My campaign manager was working with the university trustee behind my back. I only ever wanted to beat you fairly.";
-          }
-        }
-      },
-
-      // 28. Riya - The Derelict Tanker
-      {
-        id: "riya_ghost_ship",
-        title: "Riya - The Derelict Tanker",
-        category: "Thriller",
-        character: "Officer Riya",
-        role: "Coast Guard Boarding Crew",
-        tag: "Maritime Suspense",
-        color: "#164e63",
-        about: "Boarding an abandoned commercial cargo vessel floating aimlessly in the Arabian Sea.",
-        opening: "*Her flashlight cuts through the heavy ocean mist.* The engines are humming at idle, but there's no crew on the bridge. Look at these food plates... they're still warm.",
-        choices: [
-          "Check the ship's navigation logbook immediately.",
-          "Riya, look down the engine shaft—there are drag marks.",
-          "Let's radio the cutter for an immediate boarding team backup."
-        ],
-        branch: function(m) {
-          var t = m.toLowerCase();
-          if (t.includes("logbook") || t.includes("navigation") || t.includes("book")) {
-            return "*She flips through the damp nautical log.* The last entry was recorded forty minutes ago: 'We encountered an unmarked vessel. They are boarding through the lower ballast.'";
-          } else if (t.includes("drag") || t.includes("engine") || t.includes("blood")) {
-            return "*She draws her sidearm and brings up her tactical light.* Fresh blood droplets leading straight into cargo hold four... Whatever happened to this crew, the intruders are still on board.";
-          } else {
-            return "*She checks her marine transceiver.* Ocean squall is blocking the high-frequency band! We are on our own until the storm clears. Keep your weapon raised and stay behind me.";
+            return "*Woh thoda muskuraata hai.* Police par shaq? Main library mein property registry check kar raha tha jab goli ki aawaz aayi. Magar tumhare kapdo par barood ki mehak kahan se aayi?";
           }
         }
       }
@@ -1349,11 +678,10 @@
     var activeStory = null;
     var storyHistory = {};
 
-    // RENDER STORIES CATALOG INSTANTLY
     function renderStoriesCatalog(list) {
       var box = document.getElementById("storiesContainer");
       if (!list || list.length === 0) {
-        box.innerHTML = '<div style="text-align:center; padding:30px; font-size:12px; color:#64748b;">No stories found.</div>';
+        box.innerHTML = '<div style="text-align:center; padding:30px; font-size:12px; color:#64748b;">Koi kahani nahi mili.</div>';
         return;
       }
 
@@ -1361,73 +689,57 @@
       for (var i = 0; i < list.length; i++) {
         var s = list[i];
         html += '<div class="story-card" onclick="openStorySheet(\'' + s.id + '\')">';
-        html += '  <div style="flex:1;">';
-        html += '    <span class="card-badge">' + s.tag + '</span>';
-        html += '    <h3 class="card-title">' + s.title + '</h3>';
-        html += '    <p class="card-snippet">' + s.about + '</p>';
-        html += '    <div class="card-footer">';
-        html += '      <span class="online-indicator"></span>';
-        html += '      <span>Talk to: <strong style="color:#ffffff;">' + s.character + '</strong></span>';
+        html += '  <img src="' + s.photo + '" class="card-photo" alt="' + s.character + '" />';
+        html += '  <div class="card-info">';
+        html += '    <div>';
+        html += '      <span class="card-badge">' + s.tag + '</span>';
+        html += '      <h3 class="card-title">' + s.title + '</h3>';
+        html += '      <p class="card-desc">' + s.about + '</p>';
+        html += '    </div>';
+        html += '    <div class="card-meta">';
+        html += '      <span class="status-dot"></span>';
+        html += '      <span>Baat karein: <strong style="color:#ffffff;">' + s.character + '</strong></span>';
         html += '      <span>&bull;</span>';
         html += '      <span style="color:#c084fc;">Role: ' + s.role + '</span>';
         html += '    </div>';
         html += '  </div>';
-        html += '  <div class="char-avatar-circle" style="background-color:' + s.color + ';">' + s.character.charAt(0) + '</div>';
         html += '</div>';
       }
       box.innerHTML = html;
     }
 
-    // CATEGORY FILTERING
     function setCategory(cat, btn) {
       var pills = document.querySelectorAll(".category-pill");
-      for (var i = 0; i < pills.length; i++) {
-        pills[i].classList.remove("active");
-      }
+      for (var i = 0; i < pills.length; i++) pills[i].classList.remove("active");
       if (btn) btn.classList.add("active");
 
       if (cat === "All") {
         renderStoriesCatalog(STORIES);
       } else {
-        var filtered = [];
-        for (var j = 0; j < STORIES.length; j++) {
-          if (STORIES[j].category.toLowerCase() === cat.toLowerCase()) {
-            filtered.push(STORIES[j]);
-          }
-        }
+        var filtered = STORIES.filter(s => s.category.toLowerCase() === cat.toLowerCase());
         renderStoriesCatalog(filtered);
       }
     }
 
-    // SEARCH FILTERING
     function handleSearchFilter(val) {
       var q = val.toLowerCase().trim();
-      var results = [];
-      for (var i = 0; i < STORIES.length; i++) {
-        var s = STORIES[i];
-        if (s.title.toLowerCase().indexOf(q) !== -1 ||
-            s.character.toLowerCase().indexOf(q) !== -1 ||
-            s.about.toLowerCase().indexOf(q) !== -1 ||
-            s.tag.toLowerCase().indexOf(q) !== -1) {
-          results.push(s);
-        }
-      }
+      var results = STORIES.filter(s => 
+        s.title.toLowerCase().includes(q) || 
+        s.character.toLowerCase().includes(q) || 
+        s.about.toLowerCase().includes(q) || 
+        s.tag.toLowerCase().includes(q)
+      );
       renderStoriesCatalog(results);
     }
 
-    // MODAL SHEET CONTROLS
     function openStorySheet(id) {
-      for (var i = 0; i < STORIES.length; i++) {
-        if (STORIES[i].id === id) {
-          activeStory = STORIES[i];
-          break;
-        }
-      }
+      activeStory = STORIES.find(s => s.id === id);
       if (!activeStory) return;
 
       document.getElementById("modalStoryTitle").innerText = activeStory.title;
       document.getElementById("modalTagBadge").innerText = activeStory.tag;
       document.getElementById("modalStoryAbout").innerText = activeStory.about;
+      document.getElementById("modalCoverImg").src = activeStory.photo;
       document.getElementById("detailModal").style.display = "flex";
     }
 
@@ -1435,16 +747,15 @@
       document.getElementById("detailModal").style.display = "none";
     }
 
-    // LAUNCH CHAT
     function launchChatSession() {
       dismissModal();
       document.getElementById("feedScreen").style.display = "none";
       document.getElementById("chatScreen").style.display = "flex";
       document.getElementById("headerBackBtn").style.display = "inline-block";
 
-      document.getElementById("headerTitle").innerText = activeStory.character;
-      document.getElementById("headerSubtitle").innerText = "Role: " + activeStory.role;
-      document.getElementById("chatSceneBar").innerText = activeStory.about;
+      document.getElementById("chatHeaderPic").src = activeStory.photo;
+      document.getElementById("chatHeaderName").innerText = activeStory.character;
+      document.getElementById("chatHeaderRole").innerText = "Role: " + activeStory.role;
       document.getElementById("charTypingName").innerText = activeStory.character;
 
       if (!storyHistory[activeStory.id] || storyHistory[activeStory.id].length === 0) {
@@ -1462,10 +773,9 @@
       document.getElementById("feedScreen").style.display = "block";
       document.getElementById("headerBackBtn").style.display = "none";
       document.getElementById("headerTitle").innerText = "KAVANA";
-      document.getElementById("headerSubtitle").innerText = "Interactive Stories (28)";
+      document.getElementById("headerSubtitle").innerText = "Interactive Stories (Hinglish)";
     }
 
-    // CHAT RENDERING
     function renderDialogueThread() {
       var box = document.getElementById("chatHistory");
       var messages = storyHistory[activeStory.id] || [];
@@ -1474,14 +784,12 @@
       for (var i = 0; i < messages.length; i++) {
         var m = messages[i];
         if (m.sender === "user") {
-          html += '<div class="user-row">';
-          html += '  <div class="user-bubble">' + formatRpText(m.text) + '</div>';
-          html += '</div>';
+          html += '<div class="user-row"><div class="user-bubble">' + formatRpText(m.text) + '</div></div>';
         } else {
           html += '<div class="ai-row">';
-          html += '  <div class="char-avatar-circle" style="width:28px; height:28px; font-size:11px; background-color:' + activeStory.color + ';">' + activeStory.character.charAt(0) + '</div>';
+          html += '  <img src="' + activeStory.photo + '" style="width:28px; height:28px; border-radius:50%; object-fit:cover; margin-top:4px;" alt="avatar" />';
           html += '  <div class="ai-bubble">';
-          html += '    <span class="ai-name-label">' + activeStory.character + '</span>';
+          html += '    <span class="ai-name-tag">' + activeStory.character + '</span>';
           html += '    ' + formatRpText(m.text);
           html += '  </div>';
           html += '</div>';
@@ -1501,7 +809,7 @@
       var html = "";
       for (var i = 0; i < activeStory.choices.length; i++) {
         var c = activeStory.choices[i];
-        html += '<button type="button" class="chip-button" onclick="selectChipChoice(\'' + c.replace(/'/g, "\\'") + '\')">' + c + '</button>';
+        html += '<button type="button" class="chip-btn" onclick="selectChipChoice(\'' + c.replace(/'/g, "\\'") + '\')">' + c + '</button>';
       }
       bar.innerHTML = html;
     }
@@ -1521,7 +829,7 @@
       input.value = "";
       renderDialogueThread();
 
-      var typingNotice = document.getElementById("chatTypingBar");
+      var typingNotice = document.getElementById("chatTypingNotice");
       typingNotice.style.display = "block";
       var box = document.getElementById("chatHistory");
       box.scrollTop = box.scrollHeight;
@@ -1536,10 +844,19 @@
 
     function formatRpText(str) {
       var safe = str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-      return safe.replace(/\*(.*?)\*/g, '<span class="rp-action">$1</span>');
+      return safe.replace(/\*(.*?)\*/g, '<span class="rp-act">$1</span>');
     }
 
-    // INITIALIZE FEED IMMEDIATELY
+    // Auto PWA Service Worker for Chrome Home Screen install
+    if ('serviceWorker' in navigator) {
+      const swCode = `
+        self.addEventListener('install', e => self.skipWaiting());
+        self.addEventListener('fetch', e => e.respondWith(fetch(e.request).catch(() => caches.match(e.request))));
+      `;
+      const blob = new Blob([swCode], { type: 'application/javascript' });
+      navigator.serviceWorker.register(URL.createObjectURL(blob)).catch(() => {});
+    }
+
     renderStoriesCatalog(STORIES);
   </script>
 </body>
